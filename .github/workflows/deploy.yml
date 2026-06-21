@@ -13,12 +13,16 @@ jobs:
     - name: Get latest code
       uses: actions/checkout@v4
 
-    - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: ${{ secrets.FTP_SERVER_DIR }}
-        port: 21
-        security: loose
+    - name: Install lftp
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y lftp
+
+    - name: Deploy via lftp
+      run: |
+        lftp -c "
+        set ftp:ssl-allow no;
+        open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }};
+        mirror -R --delete --verbose ./ ${{ secrets.FTP_SERVER_DIR }};
+        bye
+        "

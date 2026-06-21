@@ -1,0 +1,9 @@
+# Gemini/Agent configurations
+.gemini/
+.agents/
+*.log
+
+# OS temporary files
+Thumbs.db
+Desktop.ini
+.DS_Store

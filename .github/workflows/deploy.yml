@@ -23,6 +23,6 @@ jobs:
         lftp -c "
         set ftp:ssl-allow no;
         open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }};
-        mirror -R --delete --verbose ./ ${{ secrets.FTP_SERVER_DIR }};
+        mirror -R --delete --verbose ./ www/seisakujo/;
         bye
         "

@@ -237,7 +237,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 80vh;
   min-height: 500px;
   position: relative;
-  background: linear-gradient(rgba(26, 37, 47, 0.85) 0%, rgba(26, 37, 47, 0.85) 100%), url('images/factory_workshop.png') no-repeat center center/cover;
+  background: linear-gradient(rgba(26, 37, 47, 0.85) 0%, rgba(26, 37, 47, 0.85) 100%), url('images/factory_workshop.webp') no-repeat center center/cover;
   display: flex;
   align-items: center;
   color: var(--bg-white);

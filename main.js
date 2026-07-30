@@ -363,56 +363,67 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initial fade in for spec Highlights
-    gsap.from('#hero .grid > div', {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top 80%',
-      }
+    // Create matchMedia instance
+    const mm = gsap.matchMedia();
+
+    // Only run these animations on screens >= 768px (tablets & desktops)
+    mm.add("(min-width: 768px)", () => {
+      // Initial fade in for spec Highlights
+      gsap.from('#hero .grid > div', {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top 80%',
+        }
+      });
+
+      // Reveal Bento Grid Cards
+      gsap.from('#capabilities .grid > div', {
+        opacity: 0,
+        y: 50,
+        duration: 1.0,
+        stagger: 0.15,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#capabilities',
+          start: 'top 70%',
+        }
+      });
+
+      // Reveal Equipment Bento Cards
+      gsap.from('#equipment .grid > div', {
+        opacity: 0,
+        y: 50,
+        duration: 1.0,
+        stagger: 0.15,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#equipment',
+          start: 'top 70%',
+        }
+      });
+
+      // Reveal Case Studies
+      gsap.from('#portfolio-grid > div', {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#portfolio',
+          start: 'top 70%',
+        }
+      });
     });
 
-    // Reveal Bento Grid Cards
-    gsap.from('#capabilities .grid > div', {
-      opacity: 0,
-      y: 50,
-      duration: 1.0,
-      stagger: 0.15,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '#capabilities',
-        start: 'top 70%',
-      }
-    });
-
-    // Reveal Equipment Bento Cards
-    gsap.from('#equipment .grid > div', {
-      opacity: 0,
-      y: 50,
-      duration: 1.0,
-      stagger: 0.15,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '#equipment',
-        start: 'top 70%',
-      }
-    });
-
-    // Reveal Case Studies
-    gsap.from('#portfolio-grid > div', {
-      opacity: 0,
-      y: 40,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '#portfolio',
-        start: 'top 70%',
-      }
+    // Refresh ScrollTrigger after all elements (including images) are fully loaded
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
     });
   }
 });

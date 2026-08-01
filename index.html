@@ -153,25 +153,25 @@
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
       </button>
     </div>
-
-    <!-- Mobile Nav Panel -->
-    <div id="mobile-nav" class="fixed inset-y-0 right-0 w-80 bg-[#0A0D14] border-l border-borderMetal shadow-2xl z-40 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col p-8 pt-28 justify-between">
-      <ul class="flex flex-col gap-6 text-lg font-bold">
-        <li><a href="#" class="nav-link hover:text-white text-mutedText block py-2" data-sec="hero">ホーム</a></li>
-        <li><a href="#capabilities" class="nav-link hover:text-white text-mutedText block py-2" data-sec="capabilities">対応スペック</a></li>
-        <li><a href="#equipment" class="nav-link hover:text-white text-mutedText block py-2" data-sec="equipment">設備・検査</a></li>
-        <li><a href="#portfolio" class="nav-link hover:text-white text-mutedText block py-2" data-sec="portfolio">加工解決実績</a></li>
-        <li><a href="#manifesto" class="nav-link hover:text-white text-mutedText block py-2" data-sec="manifesto">信念と品質</a></li>
-        <li><a href="#about" class="nav-link hover:text-white text-mutedText block py-2" data-sec="about">会社概要</a></li>
-      </ul>
-      <a href="#quote-section" id="mobile-menu-cta" class="bg-orangeAccent hover:bg-orange-600 text-white font-bold py-4 rounded-xl text-center flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20">
-        <i data-lucide="file-up" class="w-5 h-5"></i>
-        <span>図面見積もり (24h回答)</span>
-      </a>
-    </div>
-    <!-- Mobile Nav Overlay -->
-    <div id="mobile-overlay" class="fixed inset-0 z-30 hidden inactive"></div>
   </header>
+
+  <!-- Mobile Nav Panel (Placed at body root level for absolute top-level z-index) -->
+  <div id="mobile-nav" class="fixed inset-y-0 right-0 w-80 border-l border-borderMetal transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col p-8 pt-28 justify-between">
+    <ul class="flex flex-col gap-6 text-lg font-bold">
+      <li><a href="#" class="nav-link hover:text-white text-mutedText block py-2" data-sec="hero">ホーム</a></li>
+      <li><a href="#capabilities" class="nav-link hover:text-white text-mutedText block py-2" data-sec="capabilities">対応スペック</a></li>
+      <li><a href="#equipment" class="nav-link hover:text-white text-mutedText block py-2" data-sec="equipment">設備・検査</a></li>
+      <li><a href="#portfolio" class="nav-link hover:text-white text-mutedText block py-2" data-sec="portfolio">加工解決実績</a></li>
+      <li><a href="#manifesto" class="nav-link hover:text-white text-mutedText block py-2" data-sec="manifesto">信念と品質</a></li>
+      <li><a href="#about" class="nav-link hover:text-white text-mutedText block py-2" data-sec="about">会社概要</a></li>
+    </ul>
+    <a href="#quote-section" id="mobile-menu-cta" class="bg-orangeAccent hover:bg-orange-600 text-white font-bold py-4 rounded-xl text-center flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20">
+      <i data-lucide="file-up" class="w-5 h-5"></i>
+      <span>図面見積もり (24h回答)</span>
+    </a>
+  </div>
+  <!-- Mobile Nav Overlay -->
+  <div id="mobile-overlay" class="fixed inset-0 hidden inactive"></div>
 
   <!-- Hero Section -->
   <section class="min-h-screen relative flex items-center justify-center px-6 pt-20 bg-steel overflow-hidden" id="hero">

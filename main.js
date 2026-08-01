@@ -359,24 +359,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Page Load Animations (No ScrollTrigger to prevent hidden element bugs) ---
-  if (typeof gsap !== 'undefined') {
-    // Initial fade in for spec Highlights in Hero
-    gsap.from('#hero .grid > div', {
-      opacity: 0,
-      y: 20,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'power2.out'
-    });
-
-    // Smooth entry for Capabilities, Equipment & Portfolio cards on page load
-    gsap.from('#capabilities .grid > div, #equipment .grid > div, #portfolio-grid > div', {
-      opacity: 0,
-      y: 20,
-      duration: 0.8,
-      stagger: 0.05,
-      ease: 'power2.out'
-    });
-  }
+  // Guarantee Lucide icons are rendered after full window load
+  window.addEventListener('load', () => {
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  });
 });

@@ -34,7 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (open) {
       mobileNav.classList.remove('translate-x-full');
       mobileOverlay.classList.remove('hidden');
-      setTimeout(() => mobileOverlay.classList.add('opacity-100'), 10);
+      requestAnimationFrame(() => {
+        mobileOverlay.classList.remove('opacity-0');
+        mobileOverlay.classList.add('opacity-100');
+      });
       
       // Transform hamburger to X
       if (bar1 && bar2 && bar3) {
@@ -45,7 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       mobileNav.classList.add('translate-x-full');
       mobileOverlay.classList.remove('opacity-100');
-      mobileOverlay.classList.add('hidden'); // Instantly hide overlay to prevent lingering
+      mobileOverlay.classList.add('opacity-0');
+      setTimeout(() => {
+        if (mobileNav.classList.contains('translate-x-full')) {
+          mobileOverlay.classList.add('hidden');
+        }
+      }, 300);
       
       // Transform X back to hamburger
       if (bar1 && bar2 && bar3) {

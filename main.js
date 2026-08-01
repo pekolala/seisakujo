@@ -57,35 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (menuToggle) {
-    let lastToggleTime = 0;
-    const handleToggle = (e) => {
+    menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      const now = Date.now();
-      if (now - lastToggleTime < 300) return; // Ignore duplicate trigger from touchend + click
-      lastToggleTime = now;
-
       const isOpen = !mobileNav.classList.contains('translate-x-full');
       toggleMobileMenu(!isOpen);
-    };
-
-    ['click', 'touchend'].forEach(evt => {
-      menuToggle.addEventListener(evt, handleToggle);
     });
   }
 
   if (mobileOverlay) {
-    ['click', 'touchend'].forEach(evt => {
-      mobileOverlay.addEventListener(evt, () => toggleMobileMenu(false));
-    });
+    mobileOverlay.addEventListener('click', () => toggleMobileMenu(false));
   }
 
-  // Close mobile menu immediately on both click and touch tap for ANY link inside mobile nav panel
+  // Close mobile menu immediately when clicking ANY link inside mobile nav panel
   const allMobileNavLinks = document.querySelectorAll('#mobile-nav a');
   allMobileNavLinks.forEach(link => {
-    ['click', 'touchend'].forEach(evt => {
-      link.addEventListener(evt, () => {
-        toggleMobileMenu(false);
-      });
+    link.addEventListener('click', () => {
+      toggleMobileMenu(false);
     });
   });
 

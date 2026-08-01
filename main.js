@@ -368,17 +368,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Only run these animations on screens >= 768px (tablets & desktops)
     mm.add("(min-width: 768px)", () => {
-      // Initial fade in for spec Highlights
+      // Initial fade in for spec Highlights (No ScrollTrigger needed for the hero section)
       gsap.from('#hero .grid > div', {
         opacity: 0,
         y: 30,
         duration: 0.8,
         stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '#hero',
-          start: 'top 80%',
-        }
+        ease: 'power3.out'
       });
 
       // Reveal Bento Grid Cards
@@ -390,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '#capabilities',
-          start: 'top 70%',
+          start: 'top 90%',
         }
       });
 
@@ -403,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '#equipment',
-          start: 'top 70%',
+          start: 'top 90%',
         }
       });
 
@@ -416,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '#portfolio',
-          start: 'top 70%',
+          start: 'top 90%',
         }
       });
     });

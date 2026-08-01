@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       mobileNav.classList.add('translate-x-full');
       mobileOverlay.classList.remove('opacity-100');
-      setTimeout(() => mobileOverlay.classList.add('hidden'), 300);
+      mobileOverlay.classList.add('hidden'); // Instantly hide overlay to prevent lingering
       
       // Transform X back to hamburger
       if (bar1 && bar2 && bar3) {
@@ -57,22 +57,28 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (menuToggle) {
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = !mobileNav.classList.contains('translate-x-full');
-      toggleMobileMenu(!isOpen);
+    ['click', 'touchend'].forEach(evt => {
+      menuToggle.addEventListener(evt, (e) => {
+        e.stopPropagation();
+        const isOpen = !mobileNav.classList.contains('translate-x-full');
+        toggleMobileMenu(!isOpen);
+      });
     });
   }
 
   if (mobileOverlay) {
-    mobileOverlay.addEventListener('click', () => toggleMobileMenu(false));
+    ['click', 'touchend'].forEach(evt => {
+      mobileOverlay.addEventListener(evt, () => toggleMobileMenu(false));
+    });
   }
 
-  // Close mobile menu immediately when clicking ANY link inside mobile nav panel
+  // Close mobile menu immediately on both click and touch tap for ANY link inside mobile nav panel
   const allMobileNavLinks = document.querySelectorAll('#mobile-nav a');
   allMobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      toggleMobileMenu(false);
+    ['click', 'touchend'].forEach(evt => {
+      link.addEventListener(evt, () => {
+        toggleMobileMenu(false);
+      });
     });
   });
 

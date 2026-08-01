@@ -359,75 +359,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- GSAP ScrollTrigger Animations ---
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Create matchMedia instance
-    const mm = gsap.matchMedia();
-
-    // Only run these animations on screens >= 768px (tablets & desktops)
-    mm.add("(min-width: 768px)", () => {
-      // Initial fade in for spec Highlights (No ScrollTrigger needed for the hero section)
-      gsap.from('#hero .grid > div', {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out'
-      });
-
-      // Reveal Bento Grid Cards
-      gsap.from('#capabilities .grid > div', {
-        opacity: 0,
-        y: 50,
-        duration: 1.0,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#capabilities',
-          start: 'top bottom',
-        }
-      });
-
-      // Reveal Equipment Bento Cards
-      gsap.from('#equipment .grid > div', {
-        opacity: 0,
-        y: 50,
-        duration: 1.0,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#equipment',
-          start: 'top bottom',
-        }
-      });
-
-      // Reveal Case Studies
-      gsap.from('#portfolio-grid > div', {
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#portfolio',
-          start: 'top bottom',
-        }
-      });
-
-      // Immediately refresh ScrollTrigger to calculate initial positions
-      ScrollTrigger.refresh();
-
-      // Delay refresh by 200ms to allow dynamic CSS (Tailwind CDN) to finish applying styles
-      setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 200);
+  // --- Page Load Animations (No ScrollTrigger to prevent hidden element bugs) ---
+  if (typeof gsap !== 'undefined') {
+    // Initial fade in for spec Highlights in Hero
+    gsap.from('#hero .grid > div', {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'power2.out'
     });
 
-    // Refresh ScrollTrigger after all elements (including images) are fully loaded
-    window.addEventListener('load', () => {
-      ScrollTrigger.refresh();
+    // Smooth entry for Capabilities, Equipment & Portfolio cards on page load
+    gsap.from('#capabilities .grid > div, #equipment .grid > div, #portfolio-grid > div', {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      stagger: 0.05,
+      ease: 'power2.out'
     });
   }
 });

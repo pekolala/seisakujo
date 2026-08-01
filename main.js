@@ -57,12 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (menuToggle) {
+    let lastToggleTime = 0;
+    const handleToggle = (e) => {
+      e.stopPropagation();
+      const now = Date.now();
+      if (now - lastToggleTime < 300) return; // Ignore duplicate trigger from touchend + click
+      lastToggleTime = now;
+
+      const isOpen = !mobileNav.classList.contains('translate-x-full');
+      toggleMobileMenu(!isOpen);
+    };
+
     ['click', 'touchend'].forEach(evt => {
-      menuToggle.addEventListener(evt, (e) => {
-        e.stopPropagation();
-        const isOpen = !mobileNav.classList.contains('translate-x-full');
-        toggleMobileMenu(!isOpen);
-      });
+      menuToggle.addEventListener(evt, handleToggle);
     });
   }
 

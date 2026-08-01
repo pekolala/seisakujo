@@ -29,38 +29,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const bar3 = document.getElementById('bar3');
 
   const toggleMobileMenu = (open) => {
+    if (!mobileNav || !mobileOverlay) return;
+
     if (open) {
       mobileNav.classList.remove('translate-x-full');
       mobileOverlay.classList.remove('hidden');
       setTimeout(() => mobileOverlay.classList.add('opacity-100'), 10);
       
       // Transform hamburger to X
-      bar1.classList.add('rotate-45', 'translate-y-2');
-      bar2.classList.add('opacity-0');
-      bar3.classList.add('-rotate-45', '-translate-y-2');
+      if (bar1 && bar2 && bar3) {
+        bar1.classList.add('rotate-45', 'translate-y-2');
+        bar2.classList.add('opacity-0');
+        bar3.classList.add('-rotate-45', '-translate-y-2');
+      }
     } else {
       mobileNav.classList.add('translate-x-full');
       mobileOverlay.classList.remove('opacity-100');
       setTimeout(() => mobileOverlay.classList.add('hidden'), 300);
       
       // Transform X back to hamburger
-      bar1.classList.remove('rotate-45', 'translate-y-2');
-      bar2.classList.remove('opacity-0');
-      bar3.classList.remove('-rotate-45', '-translate-y-2');
+      if (bar1 && bar2 && bar3) {
+        bar1.classList.remove('rotate-45', 'translate-y-2');
+        bar2.classList.remove('opacity-0');
+        bar3.classList.remove('-rotate-45', '-translate-y-2');
+      }
     }
   };
 
-  menuToggle.addEventListener('click', () => {
-    const isOpen = !mobileNav.classList.contains('translate-x-full');
-    toggleMobileMenu(!isOpen);
-  });
+  if (menuToggle) {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !mobileNav.classList.contains('translate-x-full');
+      toggleMobileMenu(!isOpen);
+    });
+  }
 
-  mobileOverlay.addEventListener('click', () => toggleMobileMenu(false));
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', () => toggleMobileMenu(false));
+  }
 
-  // Close mobile menu when clicking a link
-  const navLinks = document.querySelectorAll('.nav-link, #mobile-menu-cta');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => toggleMobileMenu(false));
+  // Close mobile menu immediately when clicking ANY link inside mobile nav panel
+  const allMobileNavLinks = document.querySelectorAll('#mobile-nav a');
+  allMobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      toggleMobileMenu(false);
+    });
   });
 
   // --- Active Nav Link on Scroll (Intersection Observer) ---

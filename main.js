@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '#capabilities',
-          start: 'top 90%',
+          start: 'top bottom',
         }
       });
 
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '#equipment',
-          start: 'top 90%',
+          start: 'top bottom',
         }
       });
 
@@ -412,9 +412,17 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '#portfolio',
-          start: 'top 90%',
+          start: 'top bottom',
         }
       });
+
+      // Immediately refresh ScrollTrigger to calculate initial positions
+      ScrollTrigger.refresh();
+
+      // Delay refresh by 200ms to allow dynamic CSS (Tailwind CDN) to finish applying styles
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 200);
     });
 
     // Refresh ScrollTrigger after all elements (including images) are fully loaded

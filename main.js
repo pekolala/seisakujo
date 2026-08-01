@@ -33,11 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (open) {
       mobileNav.classList.remove('translate-x-full');
-      mobileOverlay.classList.remove('hidden');
-      requestAnimationFrame(() => {
-        mobileOverlay.classList.remove('opacity-0');
-        mobileOverlay.classList.add('opacity-100');
-      });
+      mobileOverlay.classList.remove('hidden', 'inactive');
+      mobileOverlay.classList.add('active');
       
       // Transform hamburger to X
       if (bar1 && bar2 && bar3) {
@@ -47,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } else {
       mobileNav.classList.add('translate-x-full');
-      mobileOverlay.classList.remove('opacity-100');
-      mobileOverlay.classList.add('opacity-0');
+      mobileOverlay.classList.remove('active');
+      mobileOverlay.classList.add('inactive');
       setTimeout(() => {
         if (mobileNav.classList.contains('translate-x-full')) {
           mobileOverlay.classList.add('hidden');

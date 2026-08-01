@@ -136,3 +136,30 @@ header.scrolled > div {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.15);
 }
+
+/* Mobile Navigation Panel & Backdrop Overlay (Strict Pure CSS Rules) */
+#mobile-nav {
+  background-color: #0A0D14 !important;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8) !important;
+}
+
+#mobile-overlay {
+  background-color: rgba(10, 13, 20, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  transition: opacity 0.3s ease !important;
+}
+
+#mobile-overlay.hidden {
+  display: none !important;
+}
+
+#mobile-overlay.active {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+#mobile-overlay.inactive {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
